@@ -1,5 +1,7 @@
 let main = document.querySelector("#main");
 let searchCity = document.querySelector("#cityInput");
+let searchHistory = document.querySelector("#search-history");
+let userForm = document.querySelector("#user-form");
 let btnSearch = document.querySelector(".btn-primary");
 let currentWeather = document.querySelector("#currentWeather");
 let forecastDay1 = document.querySelector("#day1");
@@ -7,22 +9,53 @@ let forecastDay2 = document.querySelector("#day2");
 let forecastDay3 = document.querySelector("#day3");
 let forecastDay4 = document.querySelector("#day4");
 let forecastDay5 = document.querySelector("#day5");
-let optionBtn = document.querySelector("#option-city");
 
+// API Key variable
 let APIKey = "b374870660328eeb7ba148b79cafb75b";
 
-// Hide content before click
+// Hide content before click event
 main.style.display = "none";
 
+// get items from localstorage and create each element button from the inputed seach city
+function loadHistory() {
+  // Clear elements saved as buttons
+  searchHistory.innerHTML = "";
+
+  let getItem = localStorage.getItem("history");
+  let getItemParsed = JSON.parse(getItem) || [];
+
+  for (let i = 0; i < getItemParsed.length; i++) {
+    let elementSaved = getItemParsed[i];
+    let savedBtn = document.createElement("button");
+    savedBtn.textContent = elementSaved;
+    savedBtn.setAttribute("button-history", elementSaved);
+    searchHistory.appendChild(savedBtn);
+  }
+}
+
+// Call function when page loads
+loadHistory();
+
+// Click event -> clear the previous content and call function searchWeather
 btnSearch.addEventListener("click", function (event) {
   event.preventDefault();
+  currentWeather.innerHTML = "";
+  toggleMain(false);
+
   let city = searchCity.value.trim();
+  searchCity.value = "";
   searchWeather(city);
 });
 
-function searchWeather(city) {
-  searchCity.value = "";
+// Click event get attribute of the dinamicaly created button and call function searchWeather
+searchHistory.addEventListener("click", function (event) {
   currentWeather.innerHTML = "";
+  let options = event.target.getAttribute("button-history");
+  searchWeather(options);
+});
+
+// Clear the prevous content - Use the API to search the coordinates using the user imput city name
+function searchWeather(city) {
   forecastDay1.innerHTML = "";
   forecastDay2.innerHTML = "";
   forecastDay3.innerHTML = "";
@@ -35,9 +68,10 @@ function searchWeather(city) {
       response.json().then(function (data) {
         let coordinateLat = data[0].lat;
         let coordinateLon = data[0].lon;
-        weather(coordinateLat, coordinateLon, city); // (lat, lon, city)
-        forecast(coordinateLat, coordinateLon);
-        unhideMain();
+        historyCities(city); // Set and get info from local Storage
+        loadHistory(); // get items from localstorage and create each element button from the inputed seach city
+        weather(coordinateLat, coordinateLon, city); // The API uses the coordinates to get the current weather details -> coordinateLat, coordinateLon, city from func above
+        forecast(coordinateLat, coordinateLon); // The weather forecast data for the next 5 days
       });
     } else {
       alert("Error Please Enter a Valid City Name");
@@ -45,24 +79,31 @@ function searchWeather(city) {
   });
 }
 
+// The API uses the coordinates to get the current weather details -> coordinateLat, coordinateLon, city from func above
 let weather = function (lat, lon, city) {
-  // coordinateLat, coordinateLon
   let weatherDataAPI = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKey}&units=metric`;
   fetch(weatherDataAPI).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
+        toggleMain(true);
+
+        // Create a div element and Append the div to the currentWeather element
+        let currentDiv = document.createElement("div");
+        currentDiv.className = "current-div";
+        currentWeather.appendChild(currentDiv);
+
         // Today date
         let rightNow = dayjs().format("(M/DD/YYYY)");
         let cityName = document.createElement("h2");
         cityName.textContent = "City: " + city + " " + rightNow;
-        currentWeather.appendChild(cityName);
+        currentDiv.appendChild(cityName);
 
         // The weather icon
         let weatherCode = data.weather[0].icon;
         let iconUrl = `https://openweathermap.org/img/w/${weatherCode}.png`;
         let iconElement = document.createElement("img");
         iconElement.src = iconUrl;
-        currentWeather.appendChild(iconElement);
+        currentDiv.appendChild(iconElement);
 
         // The weather details for currently day
         let temp = document.createElement("p");
@@ -257,15 +298,21 @@ let forecast = function (lat, lon) {
     });
 };
 
-function unhideMain() {
-  if (main.style.display === "none") {
+// Hide and show the main content
+function toggleMain(value) {
+  if (value === true) {
     main.style.display = "flex";
   } else {
     main.style.display = "none";
   }
 }
 
-optionBtn.addEventListener("click", function (event) {
-  let options = event.target.getAttribute("option-city");
-  searchWeather(options);
-});
+// Set and get info from local Storage
+let historyCities = function (city) {
+  let getItem = localStorage.getItem("history");
+  let getItemParse = JSON.parse(getItem) || [];
+  getItemParse.push(city);
+  let getItemStringfy = JSON.stringify(getItemParse);
+
+  localStorage.setItem("history", getItemStringfy);
+};
