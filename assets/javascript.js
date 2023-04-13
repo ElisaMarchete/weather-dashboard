@@ -62,7 +62,7 @@ function searchWeather(city) {
   forecastDay4.innerHTML = "";
   forecastDay5.innerHTML = "";
 
-  let coordinatesAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
+  let coordinatesAPI = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${APIKey}`;
   fetch(coordinatesAPI).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
@@ -143,7 +143,7 @@ let forecast = function (lat, lon) {
       forecastDay1.appendChild(forecastDate);
 
       let elementIcon = dailyData[0].weather[0].icon;
-      let iconURL = `http://openweathermap.org/img/w/${elementIcon}.png`;
+      let iconURL = `https://openweathermap.org/img/w/${elementIcon}.png`;
       let forecastIcon = document.createElement("img");
       forecastIcon.src = iconURL;
       forecastDay1.appendChild(forecastIcon);
@@ -175,7 +175,7 @@ let forecast = function (lat, lon) {
       forecastDay2.appendChild(forecastDate2);
 
       let elementIcon2 = dailyData[1].weather[0].icon;
-      let iconURL2 = `http://openweathermap.org/img/w/${elementIcon2}.png`;
+      let iconURL2 = `https://openweathermap.org/img/w/${elementIcon2}.png`;
       let forecastIcon2 = document.createElement("img");
       forecastIcon2.src = iconURL2;
       forecastDay2.appendChild(forecastIcon2);
@@ -207,7 +207,7 @@ let forecast = function (lat, lon) {
       forecastDay3.appendChild(forecastDate3);
 
       let elementIcon3 = dailyData[2].weather[0].icon;
-      let iconURL3 = `http://openweathermap.org/img/w/${elementIcon3}.png`;
+      let iconURL3 = `https://openweathermap.org/img/w/${elementIcon3}.png`;
       let forecastIcon3 = document.createElement("img");
       forecastIcon3.src = iconURL3;
       forecastDay3.appendChild(forecastIcon3);
@@ -239,7 +239,7 @@ let forecast = function (lat, lon) {
       forecastDay4.appendChild(forecastDate4);
 
       let elementIcon4 = dailyData[3].weather[0].icon;
-      let iconURL4 = `http://openweathermap.org/img/w/${elementIcon4}.png`;
+      let iconURL4 = `https://openweathermap.org/img/w/${elementIcon4}.png`;
       let forecastIcon4 = document.createElement("img");
       forecastIcon4.src = iconURL4;
       forecastDay4.appendChild(forecastIcon4);
@@ -271,7 +271,7 @@ let forecast = function (lat, lon) {
       forecastDay5.appendChild(forecastDate5);
 
       let elementIcon5 = dailyData[4].weather[0].icon;
-      let iconURL5 = `http://openweathermap.org/img/w/${elementIcon5}.png`;
+      let iconURL5 = `https://openweathermap.org/img/w/${elementIcon5}.png`;
       let forecastIcon5 = document.createElement("img");
       forecastIcon5.src = iconURL5;
       forecastDay5.appendChild(forecastIcon5);
