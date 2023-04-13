@@ -42,7 +42,7 @@ button[button-history] {
     padding: 7px;
     margin: 10px;
     font-size: 18px;
-    border: solid 1px rgb(88, 87, 87);
+    border: solid 1px rgb(59, 58, 58);
 }
 
 .btn {
@@ -54,7 +54,7 @@ button[button-history] {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 #currentWeather {
@@ -83,6 +83,11 @@ h4 {
     font-weight: bold;
 }
 
+h5 {
+    margin: 20px 0 0 10px;
+    font-weight: bold;
+}
+
 #forecast {
     padding: 5px;
     margin: 2px 0 2px 10px;
@@ -93,7 +98,7 @@ h4 {
 }
 
 #uvIndex {
-    margin: 15px 0 2px 10px;
+    margin: 5px 0 2px 10px;
     padding: 5px;
     width: 80%;
     font-weight: bold;
