@@ -22,9 +22,9 @@ When you add the city name the API will first retrive the data using the coordin
 This project is licensed under the MIT License.
 
 # Screenshot and link for the deployed application
+![Screenshot of deployed application](./assets/Screenshot/screenshot0.png)
 ![Screenshot of deployed application](./assets/Screenshot/screenshot1.png)
 ![Screenshot of deployed application](./assets/Screenshot/screenshot2.png)
 ![Screenshot of deployed application](./assets/Screenshot/screenshot3.png)
-![Screenshot of deployed application](./assets/Screenshot/screenshot4.png)
 [Link deployed application](https://elisamarchete.github.io/weather-dashboard/)
 
