@@ -45,6 +45,25 @@ btnSearch.addEventListener("click", function (event) {
   let city = searchCity.value.trim();
   searchCity.value = "";
   searchWeather(city);
+
+  if (window.innerWidth <= 425) {
+    // change the font size of the search text
+    let searchText = document.getElementById("searchText");
+    searchText.style.fontSize = "18px";
+
+    // change the size of the search button
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.style.height = "30px";
+    btnSearch.style.fontSize = "13px";
+
+    // change the size of the recentSearches
+    let recentSearches = document.getElementById("recentSearches");
+    recentSearches.style.fontSize = "14px";
+
+    // change the size of the searchCity
+    searchCity.style.height = "35px";
+    searchCity.style.fontSize = "15px";
+  }
 });
 
 // Click event get attribute of the dinamicaly created button and call function searchWeather
@@ -52,6 +71,26 @@ searchHistory.addEventListener("click", function (event) {
   currentWeather.innerHTML = "";
   let options = event.target.getAttribute("button-history");
   searchWeather(options);
+
+  // Check the screen width
+  if (window.innerWidth <= 425) {
+    // change the font size of the search text
+    let searchText = document.getElementById("searchText");
+    searchText.style.fontSize = "18px";
+
+    // change the size of the search button
+    let btnSearch = document.getElementById("btnSearch");
+    btnSearch.style.height = "30px";
+    btnSearch.style.fontSize = "13px";
+
+    // change the size of the recentSearches
+    let recentSearches = document.getElementById("recentSearches");
+    recentSearches.style.fontSize = "14px";
+
+    // change the size of the searchCity
+    searchCity.style.height = "35px";
+    searchCity.style.fontSize = "15px";
+  }
 });
 
 // Clear the prevous content - Use the API to search the coordinates using the user imput city name

@@ -21,16 +21,16 @@
     <div id="page">
 
     <div class="search">
-      <h2 class="card-header text-uppercase">Search for a city</h2>
+      <h2 class="card-header text-uppercase" id="searchText">Search for a city</h2>
       <div class="col-auto">
         <form id="user-form" class="row g-3">
           <label class="visually-hidden" for="cityInput"></label>
           <input type="text" class="form-control" id="cityInput" placeholder="Add a city name">
-        <button type="submit" class="btn btn-primary mb-3">Search</button>
+        <button type="submit" class="btn btn-primary mb-3" id="btnSearch">Search</button>
       </div>
       </form>
     
-      <h5>Recent Searches:</h5>
+      <h5 id="recentSearches">Recent Searches:</h5>
     <div id="search-history"></div>
   </div>
 

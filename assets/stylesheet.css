@@ -24,7 +24,7 @@ header {
 
 .search {
     margin-left: 10px;
-    width: 25%;
+    /* width: 25%; */
 }
 
 .card-header {
@@ -131,4 +131,61 @@ h5 {
     color: white;
     width: 18%;
     height: 350px;
+}
+
+@media screen and (max-width: 425px) {
+    #main {
+        display: flex;
+        width: 70%;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-content: space-around;
+        padding: 0px;
+        margin: 0px;
+
+    }
+
+    .search {
+        margin-left: 5px;
+    }
+
+    #currentWeather {
+        width: 91%;
+    }
+
+    #forecast {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 5px;
+    }
+
+    #day1,
+    #day2,
+    #day3,
+    #day4,
+    #day5 {
+        font-size: 10px;
+        width: 45%;
+        margin: 5px;
+        height: 250px;
+    }
+
+    .current-div h2 {
+        font-size: 18px;
+    }
+
+    #uvIndex h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 15px;
+    }
+
+    img {
+        width: 30px;
+    }
+
 }
